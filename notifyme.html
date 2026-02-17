@@ -1,0 +1,1727 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link
+    href="https://fonts.googleapis.com/css2?family=Stack+Sans+Notch:wght@200..700&family=Stack+Sans+Text:wght@200..700&display=swap"
+    rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+    /* Reset & Base Styles */
+    .replos-snippet-container * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    .replos-snippet-container {
+        width: 100%;
+        max-width: 100%;
+        background-color: #fff;
+        overflow-x: hidden;
+        /* Mobile: 20px relative to 393px */
+        padding-bottom: calc(20 * 100vw / 393);
+        /* Ensure positioning context for absolute children */
+        position: relative;
+        min-height: 100vh;
+    }
+
+    /* First Div - Video and Text Section */
+    .replos-snippet-container .first-section {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        overflow-x: hidden;
+    }
+
+    /* Video Container */
+    .replos-snippet-container .video-container {
+        width: 100%;
+        /*aspect-ratio: 393 / 415;*/
+        background-color: #f0f0f0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        position: relative;
+        /* Mobile: 30px and 60px relative to 393px */
+        margin-top: calc(30 * 100vw / 393);
+        padding-bottom: calc(60 * 100vw / 393);
+    }
+
+    .replos-snippet-container .video-container::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 15%;
+        pointer-events: none;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+    }
+
+    .replos-snippet-container .video-container video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        transform: scale(1.6);
+        transform-origin: center;
+    }
+
+    /* Text Container */
+    .replos-snippet-container .text-container {
+        /* Mobile: 50px 0 20px 0 relative to 393px */
+        padding: calc(50 * 100vw / 393) 0px calc(20 * 100vw / 393) 0px;
+        display: flex;
+        flex-direction: column;
+        /* Mobile: 2px relative to 393px */
+        gap: calc(2 * 100vw / 393);
+    }
+
+    .replos-snippet-container .category-text {
+        font-family: 'Stack Sans Text', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        /* Mobile: 12px relative to 393px */
+        font-size: calc(12 * 100vw / 393);
+        line-height: 0px;
+        color: #000;
+        /* Mobile: 0.5px relative to 393px */
+        letter-spacing: calc(0.5 * 100vw / 393);
+    }
+
+    .replos-snippet-container .product-title {
+        font-family: 'Stack Sans Notch', sans-serif;
+        font-style: normal;
+        font-weight: 500;
+        /* Mobile: 48px relative to 393px */
+        font-size: calc(48 * 100vw / 393);
+        /* Mobile: 62px relative to 393px */
+        line-height: calc(62 * 100vw / 393);
+        display: flex;
+        align-items: center;
+        letter-spacing: -0.02em;
+        color: #000000;
+        /* Mobile: 8px relative to 393px */
+        gap: calc(8 * 100vw / 393);
+    }
+
+    .replos-snippet-container .version-highlight {
+        color: #ff6b00;
+        font-family: 'Stack Sans Notch', sans-serif;
+        font-style: normal;
+        font-weight: 500;
+        /* Mobile: 48px relative to 393px */
+        font-size: calc(48 * 100vw / 393);
+        /* Mobile: 62px relative to 393px */
+        line-height: calc(62 * 100vw / 393);
+        letter-spacing: -0.02em;
+    }
+
+    /* Second Div - Content Section */
+    .replos-snippet-container .second-section {
+        width: 100%;
+        /* Mobile: 10px 0 10px 0 relative to 393px */
+        padding: calc(10 * 100vw / 393) 0px calc(10 * 100vw / 393) 0px;
+        display: flex;
+        flex-direction: column;
+        /* Mobile: 20px relative to 393px */
+        gap: calc(20 * 100vw / 393);
+        overflow-x: hidden;
+    }
+
+    /* Description Text */
+    .replos-snippet-container .description-container {
+        width: 100%;
+    }
+
+    .replos-snippet-container .description-text {
+        font-family: 'Stack Sans Text', sans-serif;
+        font-style: normal;
+        font-weight: 300;
+        /* Mobile: 12px relative to 393px */
+        font-size: calc(12 * 100vw / 393);
+        /* Mobile: 16px relative to 393px */
+        line-height: calc(16 * 100vw / 393);
+        letter-spacing: -0.02em;
+        color: #9F9F9F;
+        text-align: left;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+
+    /* Rating Container */
+    .replos-snippet-container .rating-container {
+        display: flex;
+        align-items: center;
+        /* Mobile: 17px relative to 393px */
+        gap: calc(17 * 100vw / 393);
+    }
+
+    .replos-snippet-container .rating-text {
+        font-family: 'Space Mono', monospace;
+        font-style: normal;
+        font-weight: 400;
+        /* Mobile: 16px relative to 393px */
+        font-size: calc(16 * 100vw / 393);
+        /* Mobile: 24px relative to 393px */
+        line-height: calc(24 * 100vw / 393);
+        letter-spacing: -0.15em;
+        color: #878787;
+    }
+
+    .replos-snippet-container .stars {
+        display: flex;
+        /* Mobile: 2px relative to 393px */
+        gap: calc(2 * 100vw / 393);
+    }
+
+    .replos-snippet-container .star-icon {
+        /* Mobile: 13px / 12px relative to 393px */
+        width: calc(13 * 100vw / 393);
+        height: calc(12 * 100vw / 393);
+    }
+
+    .replos-snippet-container .star-icon path {
+        fill: #ACADAC;
+    }
+
+    .replos-snippet-container .star-icon.muted path {
+        fill: #E0E0E0;
+    }
+
+    /* Features Grid */
+    .replos-snippet-container .features-container {
+        width: 100%;
+    }
+
+    .replos-snippet-container .features-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        /* Mobile: 10px relative to 393px */
+        gap: calc(10 * 100vw / 393);
+        /* Mobile: 5px relative to 393px */
+        margin-top: calc(5 * 100vw / 393);
+    }
+
+    .replos-snippet-container .feature-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        /* Mobile: 8px relative to 393px */
+        gap: calc(8 * 100vw / 393);
+    }
+
+    .replos-snippet-container .feature-icon {
+        /* Mobile: 60px relative to 393px */
+        width: calc(60 * 100vw / 393);
+        height: calc(60 * 100vw / 393);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .replos-snippet-container .feature-icon img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    .replos-snippet-container .feature-text {
+        font-family: 'Stack Sans Text', sans-serif;
+        /* Mobile: 10px relative to 393px */
+        font-size: calc(10 * 100vw / 393);
+        color: #666;
+        line-height: 1.2;
+    }
+
+    .replos-snippet-container .rating-review {
+        display: none;
+    }
+
+    .replos-snippet-container .desktop-rating {
+        display: none;
+    }
+
+    .replos-snippet-container .mobile-rating {
+        display: inline;
+    }
+
+    /* Vertical Line Separator - Hidden on Mobile */
+    .replos-snippet-container .vertical-line {
+        display: none;
+    }
+
+    /* Sticky Bottom Section - Mobile Only (Default) */
+    .replos-snippet-container .sticky-bottom-section {
+        position: fixed;
+        /* Mobile: 8px relative to 393px */
+        bottom: calc(8 * 100vw / 393);
+        left: 50%;
+        transform: translateX(-50%);
+        /* Mobile: calc(100% - 32px) relative to 393px */
+        width: calc(100% - calc(32 * 100vw / 393));
+        /* Mobile: 480px relative to 393px */
+        max-width: calc(480 * 100vw / 393);
+        background: rgba(255, 255, 255, 0.8);
+        box-shadow: 0px 49px 20px rgba(0, 0, 0, 0.01), 0px 28px 17px rgba(0, 0, 0, 0.03), 0px 12px 12px rgba(0, 0, 0, 0.04), 0px 3px 7px rgba(0, 0, 0, 0.05);
+        backdrop-filter: blur(7.5px);
+        /* Mobile: 35px relative to 393px */
+        border-radius: calc(35 * 100vw / 393);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        /* Mobile: 13px relative to 393px */
+        padding: calc(13 * 100vw / 393);
+        z-index: 1000;
+        margin: 0;
+        right: auto;
+        margin: 0 auto;
+        justify-content: space-between;
+        /* Add transition for smooth opacity change on mobile */
+        transition: transform 0.4s cubic-bezier(0.33, 1, 0.68, 1), opacity 0.4s ease;
+    }
+
+    /* Hidden State - Mobile (Preserve centering) */
+    @media (max-width: 767px) {
+        .replos-snippet-container .sticky-bottom-section.sticky-collision-hidden {
+            transform: translateX(-50%) translateY(150%) !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+        }
+    }
+
+    /* Hidden State - Desktop (Preserve positioning) */
+    @media (min-width: 768px) {
+        .replos-snippet-container .sticky-bottom-section.sticky-collision-hidden {
+            transform: translateY(150%) !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
+        }
+    }
+
+    .replos-snippet-container .stock-message {
+        font-family: 'Manrope', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        /* Mobile: 16px relative to 393px */
+        font-size: calc(16 * 100vw / 393);
+        /* Mobile: 22px relative to 393px */
+        line-height: calc(22 * 100vw / 393);
+        letter-spacing: -0.02em;
+        color: #878787;
+        display: flex;
+        align-items: center;
+        /* Mobile: 20px relative to 393px */
+        padding: 0 0 0 calc(20 * 100vw / 393);
+        /* Mobile: 40px relative to 393px */
+        margin-right: calc(40 * 100vw / 393);
+    }
+
+    .replos-snippet-container .notify-button {
+        background: #010101;
+        border: none;
+        /* Mobile: 30px relative to 393px */
+        border-radius: calc(30 * 100vw / 393);
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        /* Mobile: 12px 30px relative to 393px */
+        padding: calc(12 * 100vw / 393) calc(30 * 100vw / 393);
+        /* Mobile: 8.68px relative to 393px */
+        gap: calc(8.68 * 100vw / 393);
+        box-shadow: 50.6614px 85.4007px 39.8054px rgba(0, 0, 0, 0.01), 28.9494px 48.4902px 33.2918px rgba(0, 0, 0, 0.02), 13.0272px 21.712px 24.607px rgba(0, 0, 0, 0.03), 2.89494px 5.06614px 13.751px rgba(0, 0, 0, 0.04);
+        font-family: 'Stack Sans Text', sans-serif;
+        font-style: normal;
+        font-weight: 400;
+        /* Mobile: 15px relative to 393px */
+        font-size: calc(15 * 100vw / 393);
+        /* Mobile: 18px relative to 393px */
+        line-height: calc(18 * 100vw / 393);
+        text-align: center;
+        letter-spacing: -0.02em;
+        color: #FFFFFF;
+        cursor: pointer;
+        flex: none;
+        flex-grow: 0;
+        transition: background-color 0.3s;
+    }
+
+    .replos-snippet-container .notify-button:hover {
+        background: #333;
+    }
+
+    /* Modal Popup Styles */
+    #notifyModal {
+        display: none;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        background-color: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        z-index: 999999 !important;
+        justify-content: center;
+        align-items: center;
+        pointer-events: auto;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    #notifyModal.active {
+        display: flex !important;
+    }
+
+    body.modal-open {
+        overflow: hidden;
+    }
+
+    .modal-content {
+        position: fixed !important;
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        background-color: transparent;
+        width: 238px;
+        height: 321.24px;
+        border-radius: 20px;
+        padding: 20px 0;
+        text-align: center;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+        pointer-events: auto;
+        z-index: 1000000 !important;
+    }
+
+    .modal-content h2 {
+        font-family: 'Stack Sans Text', sans-serif;
+        font-size: 20px;
+        font-weight: 500;
+        margin: 0;
+        color: #010101;
+        line-height: 1.2;
+        width: 238px;
+    }
+
+    .modal-content .modal-description {
+        font-family: 'Stack Sans Text', sans-serif;
+        font-size: 12px;
+        font-weight: 300;
+        line-height: 14px;
+        color: #010101;
+        margin: 0;
+        width: 238px;
+    }
+
+    .modal-input {
+        width: 238px;
+        height: 40px;
+        padding: 0 16px;
+        margin: 0;
+        border: none;
+        border-radius: 50px;
+        background-color: #FFFFFF;
+        font-family: 'Stack Sans Text', sans-serif;
+        font-size: 9px;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+    }
+
+    .modal-input:first-of-type {
+        margin-top: 8px;
+    }
+
+    .modal-input::placeholder {
+        color: #BFBFBF;
+    }
+
+    .modal-checkbox {
+        display: flex;
+        align-items: flex-start;
+        gap: 6px;
+        margin: 0;
+        text-align: left;
+        width: 238px;
+    }
+
+    .modal-checkbox .custom-checkbox {
+        width: 13px;
+        height: 16px;
+        margin-top: 1px;
+        cursor: pointer;
+        flex-shrink: 0;
+        position: relative;
+    }
+
+    .modal-checkbox .custom-checkbox svg {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+    .modal-checkbox .custom-checkbox.checked rect {
+        fill: #FC832C;
+        stroke: #FC832C;
+    }
+
+    .modal-checkbox .custom-checkbox.checked::after {
+        content: '✓';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #FFFFFF;
+        font-size: 10px;
+        font-weight: bold;
+    }
+
+    .modal-checkbox label {
+        font-family: 'Stack Sans Text', sans-serif;
+        font-size: 8px;
+        font-weight: 300;
+        color: #9F9F9F;
+        line-height: 10px;
+        cursor: pointer;
+    }
+
+    .swipe-button {
+        width: 238px;
+        height: 40px;
+        background-color: #000000;
+        border: none;
+        border-radius: 20px;
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 0;
+        margin: 0;
+        margin-top: 8px;
+        box-sizing: border-box;
+        z-index: 10;
+    }
+
+    .swipe-slider {
+        position: absolute;
+        left: 4px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 100px;
+        height: 33px;
+        background-color: #FC832C;
+        border-radius: 16px;
+        z-index: 1;
+        cursor: grab;
+        touch-action: none;
+        will-change: transform;
+    }
+
+    .swipe-slider.dragging {
+        cursor: grabbing;
+    }
+
+    .swipe-button-text {
+        font-family: 'Stack Sans Text', sans-serif;
+        font-size: 10px;
+        font-weight: 500;
+        color: #FFFFFF;
+        position: absolute;
+        left: 4px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 100px;
+        text-align: center;
+        pointer-events: none;
+        z-index: 2;
+        will-change: transform;
+    }
+
+    /* Desktop Styles */
+    @media (min-width: 768px) {
+        .replos-snippet-container {
+            width: 100%;
+            position: relative;
+            overflow-x: hidden;
+            padding: 0;
+            /* Desktop: 10px relative to 1440px */
+            padding-bottom: calc(10 * 100vw / 1440);
+            margin: 0 auto;
+            padding-top: calc(50*100vw / 1440)
+        }
+
+        /* Desktop Layout - Grid System */
+        .replos-snippet-container .first-section {
+            position: relative;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto auto;
+            /* Desktop: 40px 60px relative to 1440px */
+            gap: calc(40 * 100vw / 1440) calc(60 * 100vw / 1440);
+            /* Desktop: 80px relative to 1440px */
+            margin-bottom: calc(80 * 100vw / 1440);
+            padding: 0px;
+            overflow-x: hidden;
+            box-sizing: border-box;
+        }
+
+        .replos-snippet-container .video-container {
+            grid-column: 1 / -1;
+            grid-row: 1;
+            aspect-ratio: 16 / 13;
+            /* Desktop: 900px relative to 1440px */
+            max-width: calc(900 * 100vw / 1440);
+            /* Desktop: -140px auto 0 auto relative to 1440px */
+            margin: calc(-140 * 100vw / 1440) auto 0 auto;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+            /* Desktop: -120px relative to 1440px */
+            margin-top: calc(-120 * 100vw / 1440);
+            padding-bottom: 0;
+        }
+
+        .replos-snippet-container .video-container::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 15%;
+            pointer-events: none;
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 1) 100%);
+        }
+
+        .replos-snippet-container .video-container video {
+            transform: scale(1);
+        }
+
+        .replos-snippet-container .text-container {
+            grid-column: 1;
+            grid-row: 2;
+            padding: 0;
+            align-self: start;
+            /* Desktop: -105px relative to 1440px */
+            margin-top: calc(-105 * 100vw / 1440);
+            position: relative;
+            z-index: 2;
+            gap: 0px;
+        }
+
+        .replos-snippet-container .category-text {
+            /* Desktop: 16px relative to 1440px */
+            font-size: calc(16 * 100vw / 1440);
+            line-height: 0px;
+            margin-bottom: 0px;
+        }
+
+        .replos-snippet-container .product-title {
+            /* Desktop: 66px relative to 1440px */
+            font-size: calc(66 * 100vw / 1440);
+            /* Desktop: 104px relative to 1440px */
+            line-height: calc(104 * 100vw / 1440);
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .replos-snippet-container .version-highlight {
+            /* Desktop: 66px relative to 1440px */
+            font-size: calc(66 * 100vw / 1440);
+            /* Desktop: 104px relative to 1440px */
+            line-height: calc(104 * 100vw / 1440);
+        }
+
+        .replos-snippet-container .second-section {
+            display: flex;
+            flex-direction: row;
+            gap: 0px;
+            padding: 0px;
+            position: relative;
+            align-items: flex-start;
+            overflow-x: hidden;
+            flex-wrap: nowrap;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .replos-snippet-container .description-container {
+            flex: 1 1 35%;
+            min-width: 0;
+            max-width: 40%;
+            order: 0;
+        }
+
+        .replos-snippet-container .description-text {
+            /* Desktop: 20px relative to 1440px */
+            font-size: calc(20 * 100vw / 1440);
+            /* Desktop: 28px relative to 1440px */
+            line-height: calc(28 * 100vw / 1440);
+            color: #010101;
+            margin-bottom: 0;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        .replos-snippet-container .rating-container {
+            flex: 0 0 auto;
+            flex-direction: column;
+            align-items: flex-start;
+            /* Desktop: 10px relative to 1440px */
+            gap: calc(10 * 100vw / 1440);
+            min-width: 0;
+            width: fit-content;
+            /* Desktop: 50px relative to 1440px */
+            padding-left: calc(50 * 100vw / 1440);
+            order: 1;
+        }
+
+        .replos-snippet-container .rating-text {
+            /* Desktop: 21.7647px relative to 1440px */
+            font-size: calc(21.7647 * 100vw / 1440);
+            /* Desktop: 34px relative to 1440px */
+            line-height: calc(34 * 100vw / 1440);
+            color: #878787;
+        }
+
+        .replos-snippet-container .mobile-rating {
+            display: none;
+        }
+
+        .replos-snippet-container .desktop-rating {
+            display: inline;
+        }
+
+        .replos-snippet-container .stars {
+            /* Desktop: 8px relative to 1440px */
+            gap: calc(8 * 100vw / 1440);
+        }
+
+        .replos-snippet-container .star-icon {
+            /* Desktop: 20px / 18px relative to 1440px */
+            width: calc(20 * 100vw / 1440);
+            height: calc(18 * 100vw / 1440);
+        }
+
+        .replos-snippet-container .star-icon path {
+            fill: #ACADAC;
+        }
+
+        .replos-snippet-container .star-icon.muted path {
+            fill: #E0E0E0;
+        }
+
+        .replos-snippet-container .rating-review {
+            display: block;
+            font-family: 'Stack Sans Text', sans-serif;
+            /* Desktop: 20.3349px relative to 1440px */
+            font-size: calc(20.3349 * 100vw / 1440);
+            color: rgba(0, 0, 0, 0.4);
+            /* Desktop: 5px relative to 1440px */
+            margin-top: calc(5 * 100vw / 1440);
+        }
+
+        .replos-snippet-container .vertical-line {
+            display: block;
+            /* Desktop: 98.21px relative to 1440px */
+            width: calc(98.21 * 100vw / 1440);
+            height: 0px;
+            border: 1px solid #ACADAC;
+            transform: rotate(90deg);
+            flex: none;
+            order: 2;
+            flex-grow: 0;
+            align-self: center;
+        }
+
+        .replos-snippet-container .features-container {
+            flex: 1 1 35%;
+            min-width: 0;
+            max-width: 40%;
+            order: 3;
+        }
+
+        .replos-snippet-container .features-grid {
+            /* Desktop: 20px relative to 1440px */
+            gap: calc(20 * 100vw / 1440);
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            margin-top: 0px;
+        }
+
+        .replos-snippet-container .feature-icon {
+            /* Desktop: 85px relative to 1440px */
+            width: calc(85 * 100vw / 1440);
+            height: calc(85 * 100vw / 1440);
+        }
+
+        .replos-snippet-container .feature-text {
+            /* Desktop: 9px relative to 1440px */
+            font-size: calc(9 * 100vw / 1440);
+            color: #666;
+        }
+
+        /* Sticky Button Base Styles - FIXED BOTTOM RIGHT */
+        .replos-snippet-container .sticky-bottom-section {
+            width: auto;
+            max-width: none;
+            min-width: auto;
+            margin: 0;
+            will-change: transform;
+
+            position: fixed;
+            /* Desktop: 20px relative to 1440px */
+            right: calc(20 * 100vw / 1440);
+            top: auto;
+            bottom: calc(20 * 100vw / 1440);
+            /* Equal gap for right and bottom */
+            transform: none;
+            left: auto;
+            opacity: 1;
+            visibility: visible;
+
+            transition: opacity 0.4s ease, visibility 0.4s ease, transform 0.4s cubic-bezier(0.33, 1, 0.68, 1);
+            padding: calc(13 * 100vw / 1440);
+            border-radius: calc(35 * 100vw / 1440);
+        }
+
+        .replos-snippet-container .stock-message {
+            font-size: calc(16 * 100vw / 1440);
+            line-height: calc(22 * 100vw / 1440);
+            padding: 0 0 0 calc(20 * 100vw / 1440);
+            margin-right: calc(40 * 100vw / 1440);
+        }
+
+        .replos-snippet-container .notify-button {
+            padding: calc(12 * 100vw / 1440) calc(30 * 100vw / 1440);
+            font-size: calc(15 * 100vw / 1440);
+            line-height: calc(18 * 100vw / 1440);
+            border-radius: calc(30 * 100vw / 1440);
+            gap: calc(9 * 100vw / 1440);
+        }
+
+        .replos-snippet-container .sticky-bottom-section.animating {
+            transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.4s ease;
+        }
+
+        /* Large Screen adjustment */
+        @media (min-width: 1440px) {
+            .replos-snippet-container .sticky-bottom-section {
+                right: 20px;
+                bottom: 20px;
+                /* Cap both values to remain equal */
+            }
+        }
+
+        /* Desktop Modal Styles */
+        .modal-content {
+            width: 321px;
+            height: 434px;
+            gap: 16px;
+        }
+
+        .modal-content h2,
+        .modal-content .modal-description {
+            width: 321px;
+        }
+
+        .modal-content h2 {
+            font-size: 27px;
+        }
+
+        .modal-content .modal-description {
+            font-size: 16px;
+            line-height: 19px;
+        }
+
+        .modal-input {
+            width: 321px;
+            height: 54px;
+            padding: 0 22px;
+            font-size: 12px;
+            border-radius: 68px;
+        }
+
+        .modal-input:first-of-type {
+            margin-top: 11px;
+        }
+
+        .modal-checkbox {
+            width: 321px;
+            gap: 8px;
+        }
+
+        .modal-checkbox .custom-checkbox {
+            width: 18px;
+            height: 22px;
+        }
+
+        .modal-checkbox .custom-checkbox.checked::after {
+            font-size: 14px;
+        }
+
+        .modal-checkbox label {
+            font-size: 11px;
+            line-height: 14px;
+        }
+
+        .swipe-button {
+            width: 321px;
+            height: 54px;
+            border-radius: 27px;
+            margin-top: 11px;
+        }
+
+        .swipe-slider {
+            left: 5px;
+            width: 135px;
+            height: 45px;
+            border-radius: 22px;
+        }
+
+        .swipe-button-text {
+            font-size: 14px;
+            left: 5px;
+            width: 135px;
+        }
+    }
+
+    /* Tablet Styles (768px - 1024px) */
+    @media (min-width: 768px) and (max-width: 1024px) {
+        .replos-snippet-container {
+            max-width: 100%;
+            padding: 0 16px;
+        }
+
+        .replos-snippet-container .first-section {
+            gap: 32px 48px;
+            margin-bottom: 64px;
+        }
+
+        .replos-snippet-container .video-container {
+            margin: -112px auto 0 auto;
+            aspect-ratio: 16 / 13;
+            max-width: 100%;
+        }
+
+        .replos-snippet-container .text-container {
+            margin-top: -84px;
+        }
+
+        .replos-snippet-container .category-text {
+            font-size: 13px;
+        }
+
+        .replos-snippet-container .product-title {
+            font-size: 53px;
+            line-height: 83px;
+        }
+
+        .replos-snippet-container .version-highlight {
+            font-size: 53px;
+            line-height: 83px;
+        }
+
+        .replos-snippet-container .second-section {
+            display: grid;
+            grid-template-columns: 35% 20% 40%;
+            gap: 5%;
+            align-items: flex-start;
+            flex-wrap: nowrap;
+        }
+
+        .replos-snippet-container .description-container {
+            flex: auto;
+            max-width: 100%;
+            order: 0;
+            margin-bottom: 0;
+        }
+
+        .replos-snippet-container .description-text {
+            font-size: 10px;
+            line-height: 14px;
+        }
+
+        .replos-snippet-container .rating-container {
+            flex: auto;
+            padding-left: 20px;
+            order: 1;
+            align-items: flex-start;
+            gap: 5px;
+            width: auto;
+        }
+
+        .replos-snippet-container .rating-text {
+            font-size: 11px;
+            line-height: 18px;
+        }
+
+        .replos-snippet-container .rating-review {
+            font-size: 10px;
+        }
+
+        .replos-snippet-container .star-icon {
+            width: 10px;
+            height: 9px;
+        }
+
+        .replos-snippet-container .vertical-line {
+            display: none;
+        }
+
+        .replos-snippet-container .features-container {
+            flex: auto;
+            max-width: 100%;
+            order: 3;
+            margin-top: 0;
+        }
+
+        .replos-snippet-container .features-grid {
+            gap: 8px;
+            margin-top: 0;
+        }
+
+        .replos-snippet-container .feature-icon {
+            width: 36px;
+            height: 36px;
+        }
+
+        .replos-snippet-container .feature-text {
+            font-size: 7px;
+        }
+
+        /* Sticky Button adjustments - Equal Gap Logic Applied Here */
+        .replos-snippet-container .sticky-bottom-section {
+            right: calc(20 * 100vw / 1024);
+            bottom: calc(20 * 100vw / 1024);
+        }
+
+        .modal-content {
+            width: 257px;
+            height: 347px;
+        }
+
+        .modal-content h2 {
+            font-size: 22px;
+        }
+
+        .modal-content .modal-description {
+            font-size: 13px;
+        }
+
+        .modal-input {
+            width: 257px;
+            height: 43px;
+        }
+
+        .swipe-button {
+            width: 257px;
+            height: 43px;
+        }
+    }
+</style>
+<div class="replos-snippet-container">
+    <div class="first-section">
+        <div class="video-container">
+            <video autoplay loop muted playsinline>
+                <source src="https://cdn.shopify.com/videos/c/o/v/829127277c184593a7bddbd55b5ad028.mp4"
+                    type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="text-container" id="targetTextContainer">
+            <div class="category-text">[ wired headphones ]</div>
+            <div class="product-title" id="versionTitle">
+                version <span class="version-highlight">H1</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="second-section">
+        <div class="description-container">
+            <div class="description-text">
+                Engineered over 2 years to bring immersive sound and jaw-dropping design together.
+                Meet the World's
+                Coolest Gaming Headphones.
+                the armor version H1.
+            </div>
+        </div>
+
+        <div class="rating-container">
+            <div style="display: flex; align-items: center; gap: 8px;">
+                <span class="rating-text mobile-rating">4.5</span>
+                <span class="rating-text desktop-rating" style="display: none;">4.8</span>
+                <div class="stars">
+                    <svg class="star-icon" width="13" height="12" viewBox="0 0 13 12" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M5.77133 0.185326C5.85115 -0.0617904 6.20077 -0.0617907 6.28058 0.185326L7.51875 4.01883C7.55443 4.1293 7.65728 4.20416 7.77337 4.20416L11.7835 4.20416C12.0424 4.20416 12.1504 4.53504 11.9414 4.68777L8.69439 7.06101C8.60117 7.12914 8.56217 7.24939 8.59766 7.35927L9.83727 11.1972C9.91698 11.444 9.63414 11.6486 9.42475 11.4955L6.18385 9.12676C6.08981 9.05802 5.9621 9.05802 5.86806 9.12676L2.62717 11.4955C2.41778 11.6486 2.13493 11.444 2.21465 11.1972L3.45425 7.35927C3.48974 7.24939 3.45074 7.12914 3.35752 7.06101L0.110488 4.68777C-0.0984703 4.53504 0.00955868 4.20416 0.268381 4.20416L4.27854 4.20416C4.39464 4.20416 4.49749 4.1293 4.53317 4.01883L5.77133 0.185326Z" />
+                    </svg>
+                    <svg class="star-icon" width="13" height="12" viewBox="0 0 13 12" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M5.77133 0.185326C5.85115 -0.0617904 6.20077 -0.0617907 6.28058 0.185326L7.51875 4.01883C7.55443 4.1293 7.65728 4.20416 7.77337 4.20416L11.7835 4.20416C12.0424 4.20416 12.1504 4.53504 11.9414 4.68777L8.69439 7.06101C8.60117 7.12914 8.56217 7.24939 8.59766 7.35927L9.83727 11.1972C9.91698 11.444 9.63414 11.6486 9.42475 11.4955L6.18385 9.12676C6.08981 9.05802 5.9621 9.05802 5.86806 9.12676L2.62717 11.4955C2.41778 11.6486 2.13493 11.444 2.21465 11.1972L3.45425 7.35927C3.48974 7.24939 3.45074 7.12914 3.35752 7.06101L0.110488 4.68777C-0.0984703 4.53504 0.00955868 4.20416 0.268381 4.20416L4.27854 4.20416C4.39464 4.20416 4.49749 4.1293 4.53317 4.01883L5.77133 0.185326Z" />
+                    </svg>
+                    <svg class="star-icon" width="13" height="12" viewBox="0 0 13 12" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M5.77133 0.185326C5.85115 -0.0617904 6.20077 -0.0617907 6.28058 0.185326L7.51875 4.01883C7.55443 4.1293 7.65728 4.20416 7.77337 4.20416L11.7835 4.20416C12.0424 4.20416 12.1504 4.53504 11.9414 4.68777L8.69439 7.06101C8.60117 7.12914 8.56217 7.24939 8.59766 7.35927L9.83727 11.1972C9.91698 11.444 9.63414 11.6486 9.42475 11.4955L6.18385 9.12676C6.08981 9.05802 5.9621 9.05802 5.86806 9.12676L2.62717 11.4955C2.41778 11.6486 2.13493 11.444 2.21465 11.1972L3.45425 7.35927C3.48974 7.24939 3.45074 7.12914 3.35752 7.06101L0.110488 4.68777C-0.0984703 4.53504 0.00955868 4.20416 0.268381 4.20416L4.27854 4.20416C4.39464 4.20416 4.49749 4.1293 4.53317 4.01883L5.77133 0.185326Z" />
+                    </svg>
+                    <svg class="star-icon" width="13" height="12" viewBox="0 0 13 12" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M5.77133 0.185326C5.85115 -0.0617904 6.20077 -0.0617907 6.28058 0.185326L7.51875 4.01883C7.55443 4.1293 7.65728 4.20416 7.77337 4.20416L11.7835 4.20416C12.0424 4.20416 12.1504 4.53504 11.9414 4.68777L8.69439 7.06101C8.60117 7.12914 8.56217 7.24939 8.59766 7.35927L9.83727 11.1972C9.91698 11.444 9.63414 11.6486 9.42475 11.4955L6.18385 9.12676C6.08981 9.05802 5.9621 9.05802 5.86806 9.12676L2.62717 11.4955C2.41778 11.6486 2.13493 11.444 2.21465 11.1972L3.45425 7.35927C3.48974 7.24939 3.45074 7.12914 3.35752 7.06101L0.110488 4.68777C-0.0984703 4.53504 0.00955868 4.20416 0.268381 4.20416L4.27854 4.20416C4.39464 4.20416 4.49749 4.1293 4.53317 4.01883L5.77133 0.185326Z" />
+                    </svg>
+                    <svg class="star-icon muted" width="13" height="12" viewBox="0 0 13 12" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M5.77133 0.185326C5.85115 -0.0617904 6.20077 -0.0617907 6.28058 0.185326L7.51875 4.01883C7.55443 4.1293 7.65728 4.20416 7.77337 4.20416L11.7835 4.20416C12.0424 4.20416 12.1504 4.53504 11.9414 4.68777L8.69439 7.06101C8.60117 7.12914 8.56217 7.24939 8.59766 7.35927L9.83727 11.1972C9.91698 11.444 9.63414 11.6486 9.42475 11.4955L6.18385 9.12676C6.08981 9.05802 5.9621 9.05802 5.86806 9.12676L2.62717 11.4955C2.41778 11.6486 2.13493 11.444 2.21465 11.1972L3.45425 7.35927C3.48974 7.24939 3.45074 7.12914 3.35752 7.06101L0.110488 4.68777C-0.0984703 4.53504 0.00955868 4.20416 0.268381 4.20416L4.27854 4.20416C4.39464 4.20416 4.49749 4.1293 4.53317 4.01883L5.77133 0.185326Z" />
+                    </svg>
+                </div>
+            </div>
+            <div class="rating-review">4.8 out of 5<br>(84 reviews)</div>
+        </div>
+
+        <div class="vertical-line"></div>
+
+        <div class="features-container">
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <img src="https://cdn.shopify.com/s/files/1/0967/6039/8106/files/Vector.svg?v=1764162031"
+                            alt="Free shipping icon" width="32" height="32">
+                    </div>
+                    <div class="feature-text">free shipping</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <img src="https://cdn.shopify.com/s/files/1/0967/6039/8106/files/Group_295.svg?v=1764162030"
+                            alt="Delivery icon" width="32" height="32">
+                    </div>
+                    <div class="feature-text">delivered in 2-7 days</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <img src="https://cdn.shopify.com/s/files/1/0967/6039/8106/files/Group_296.svg?v=1764162031"
+                            alt="Warranty icon" width="32" height="32">
+                    </div>
+                    <div class="feature-text">1 yr warranty</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <img src="https://cdn.shopify.com/s/files/1/0967/6039/8106/files/Group_298.svg?v=1764162031"
+                            alt="Replacement icon" width="32" height="32">
+                    </div>
+                    <div class="feature-text">replaced if faulty</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="sticky-bottom-section" id="stickyBottomSection">
+        <div class="stock-message">Out of stock</div>
+        <button class="notify-button">Notify me</button>
+    </div>
+</div>
+
+<div id="notifyModal">
+    <div class="modal-content">
+        <h2>Stay in the loop</h2>
+        <p class="modal-description">Don't worry we got you, we'll let you know when the H1 comes back into stock :)
+        </p>
+
+        <input type="email" class="modal-input" placeholder="Enter your email" required>
+        <input type="tel" class="modal-input" placeholder="+91 Whatsapp number (optional)">
+
+        <div class="modal-checkbox">
+            <div class="custom-checkbox" id="agreeCheckbox">
+                <svg width="13" height="16" viewBox="0 0 13 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="0.32553" y="0.32553" width="12.155" height="15.2711" rx="3.14679" stroke="#9F9F9F"
+                        stroke-width="0.65106" />
+                </svg>
+            </div>
+            <label for="agreeCheckbox">I agree to receive updates and messages from your company</label>
+        </div>
+
+        <div class="swipe-button">
+            <div class="swipe-slider" id="swipeSlider"></div>
+            <span class="swipe-button-text">Swipe to notify ›</span>
+        </div>
+    </div>
+</div>
+
+<script type="module">
+    import { saveFormSubmission } from './src/form-handler.js';
+    // Modal functionality with focus trap and improved initialization
+    let modalInitialized = false;
+    let focusableElements = [];
+    let firstFocusableElement = null;
+    let lastFocusableElement = null;
+    let previousActiveElement = null;
+    function getFocusableElements(container) {
+        const focusableSelectors = [
+            'a[href]',
+            'button:not([disabled])',
+            'textarea:not([disabled])',
+            'input:not([disabled])',
+            'select:not([disabled])',
+            '[tabindex]:not([tabindex="-1"])'
+        ];
+        return container.querySelectorAll(focusableSelectors.join(', '));
+    }
+
+    function trapFocus(e) {
+        if (e.key !== 'Tab') return;
+        const modal = document.getElementById('notifyModal');
+        if (!modal || !modal.classList.contains('active')) return;
+
+        const modalContent = modal.querySelector('.modal-content');
+        if (!modalContent) return;
+        if (focusableElements.length === 0) {
+            focusableElements = Array.from(getFocusableElements(modalContent));
+            firstFocusableElement = focusableElements[0];
+            lastFocusableElement = focusableElements[focusableElements.length - 1];
+        }
+
+        if (focusableElements.length === 0) return;
+        if (e.shiftKey) {
+            // Shift + Tab
+            if (document.activeElement === firstFocusableElement) {
+                e.preventDefault();
+                lastFocusableElement.focus();
+            }
+        } else {
+            // Tab
+            if (document.activeElement === lastFocusableElement) {
+                e.preventDefault();
+                firstFocusableElement.focus();
+            }
+        }
+    }
+
+    function openModal() {
+        const modal = document.getElementById('notifyModal');
+        if (!modal) return;
+
+        // Move modal to body to ensure it's above all content
+        if (modal.parentElement !== document.body) {
+            document.body.appendChild(modal);
+        }
+
+        // Store the previously focused element
+        previousActiveElement = document.activeElement;
+        // Prevent body scroll
+        document.body.classList.add('modal-open');
+        // Show modal
+        modal.classList.add('active');
+        // Reset focusable elements
+        focusableElements = [];
+        // Focus first element after a brief delay
+        requestAnimationFrame(() => {
+            const modalContent = modal.querySelector('.modal-content');
+            if (modalContent) {
+                focusableElements = Array.from(getFocusableElements(modalContent));
+                if (focusableElements.length > 0) {
+                    firstFocusableElement = focusableElements[0];
+                    lastFocusableElement = focusableElements[focusableElements.length - 1];
+                    firstFocusableElement.focus();
+                }
+            }
+        });
+    }
+
+    function closeModal() {
+        const modal = document.getElementById('notifyModal');
+        if (!modal) return;
+
+        modal.classList.remove('active');
+        document.body.classList.remove('modal-open');
+
+        // Restore focus to previously focused element
+        if (previousActiveElement && typeof previousActiveElement.focus === 'function') {
+            previousActiveElement.focus();
+        }
+
+        focusableElements = [];
+    }
+
+    function initModal() {
+        if (modalInitialized) return;
+        const modal = document.getElementById('notifyModal');
+        const notifyButtons = document.querySelectorAll('.notify-button');
+
+        // Move modal to body immediately to ensure it's above all content
+        if (modal && modal.parentElement !== document.body) {
+            document.body.appendChild(modal);
+        }
+
+        // Check if elements exist
+        if (!modal) {
+            // Retry once if modal not found (Replo compatibility)
+            if (!modalInitialized) {
+                requestAnimationFrame(() => {
+                    setTimeout(initModal, 100);
+                });
+            }
+            return;
+        }
+
+        if (notifyButtons.length === 0) {
+            // Retry once if buttons not found (Replo compatibility)
+            if (!modalInitialized) {
+                requestAnimationFrame(() => {
+                    setTimeout(initModal, 100);
+                });
+            }
+            return;
+        }
+
+        modalInitialized = true;
+        // Open modal when any notify button is clicked
+        notifyButtons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                openModal();
+            });
+        });
+
+        // Close modal when clicking on the backdrop (not the content)
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+        // Prevent modal content clicks from closing the modal
+        const modalContent = modal.querySelector('.modal-content');
+        if (modalContent) {
+            modalContent.addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
+        }
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+        // Trap focus within modal
+        document.addEventListener('keydown', trapFocus);
+    }
+
+    // Initialize with improved Replo compatibility
+    function initModalWithRetry() {
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => {
+                requestAnimationFrame(initModal);
+            });
+        } else {
+            requestAnimationFrame(initModal);
+        }
+    }
+
+    initModalWithRetry();
+
+    // Swipe slider functionality with CSS transitions
+    let sliderInitialized = false;
+    function initSwipeSlider() {
+        const slider = document.getElementById('swipeSlider');
+        if (!slider) {
+            return;
+        }
+
+        // Prevent multiple initializations
+        if (sliderInitialized) {
+            return;
+        }
+
+        sliderInitialized = true;
+        const button = slider.parentElement;
+        const buttonText = button.querySelector('.swipe-button-text');
+        // Calculate maxSlide based on button width (responsive)
+        const getMaxSlide = () => {
+            const buttonWidth = button.offsetWidth;
+            const sliderWidth = slider.offsetWidth;
+            // Get computed left position of slider (padding)
+            const computedStyle = window.getComputedStyle(slider);
+            const sliderLeft = parseFloat(computedStyle.left) || parseFloat(computedStyle.paddingLeft) || 4;
+            // Calculate max slide distance: button width - slider width - left padding - right padding (same as left)
+            return buttonWidth - sliderWidth - (sliderLeft * 2);
+        };
+
+        let maxSlide = getMaxSlide();
+        let isDragging = false;
+        let startX = 0;
+        let currentX = 0;
+        let animationFrame = null;
+
+        // Update maxSlide on resize and when modal opens
+        const updateMaxSlide = () => {
+            const newMaxSlide = getMaxSlide();
+            if (newMaxSlide > 0) {
+                maxSlide = newMaxSlide;
+                // Ensure currentX doesn't exceed new maxSlide
+                if (currentX > maxSlide) {
+                    currentX = maxSlide;
+                    updatePosition();
+                }
+            }
+        };
+        window.addEventListener('resize', updateMaxSlide);
+
+        // Recalculate when modal opens (button dimensions may change)
+        const modal = document.getElementById('notifyModal');
+        if (modal) {
+            const observer = new MutationObserver(() => {
+                if (modal.classList.contains('active')) {
+                    setTimeout(updateMaxSlide, 50);
+                }
+            });
+            observer.observe(modal, { attributes: true, attributeFilter: ['class'] });
+        }
+
+        // Add transition for smooth animation
+        slider.style.transition = 'transform 0.3s ease-out';
+        buttonText.style.transition = 'transform 0.3s ease-out';
+
+        const updatePosition = () => {
+            slider.style.transform = `translate(${currentX}px, -50%)`;
+            buttonText.style.transform = `translate(${currentX}px, -50%)`;
+        };
+
+        const animateTo = (targetX, callback) => {
+            if (animationFrame) {
+                cancelAnimationFrame(animationFrame);
+            }
+
+            const startX = currentX;
+            const distance = targetX - startX;
+            const duration = 300;
+            // ms
+            const startTime = performance.now();
+            const animate = (currentTime) => {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+
+                // Easing function (ease-out)
+                const easeOut = 1 - Math.pow(1 - progress, 3);
+                currentX = startX + (distance * easeOut);
+                updatePosition();
+
+                if (progress < 1) {
+                    animationFrame = requestAnimationFrame(animate);
+                } else {
+                    currentX = targetX;
+                    updatePosition();
+                    if (callback) callback();
+                }
+            };
+
+            animationFrame = requestAnimationFrame(animate);
+        };
+
+        const snapBack = () => {
+            slider.style.transition = 'transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+            buttonText.style.transition = 'transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+            currentX = 0;
+            updatePosition();
+            setTimeout(() => {
+                slider.style.transition = '';
+                buttonText.style.transition = '';
+            }, 400);
+        };
+
+        // Touch start
+        slider.addEventListener('touchstart', (e) => {
+            isDragging = true;
+            const rect = slider.getBoundingClientRect();
+            startX = e.touches[0].clientX - rect.left;
+            slider.classList.add('dragging');
+            slider.style.transition = '';
+            buttonText.style.transition = '';
+            if (animationFrame) {
+                cancelAnimationFrame(animationFrame);
+            }
+        }, { passive: false });
+        // Touch move
+        slider.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+
+            const rect = button.getBoundingClientRect();
+            const touchX = e.touches[0].clientX - rect.left;
+            const deltaX = touchX - startX;
+
+            currentX = Math.max(0, Math.min(deltaX, maxSlide));
+            updatePosition();
+        }, { passive: false });
+        // Touch end
+        slider.addEventListener('touchend', () => {
+            if (!isDragging) return;
+
+            isDragging = false;
+            slider.classList.remove('dragging');
+
+            // If swiped more than 80% of the way, complete the action
+            if (currentX > maxSlide * 0.8) {
+                animateTo(maxSlide, () => {
+                    submitNotification();
+                });
+            } else {
+                snapBack();
+            }
+
+            currentX = 0;
+        }, { passive: false });
+        // Mouse events for desktop
+        let initialMouseX = 0;
+        let initialSliderX = 0;
+        slider.addEventListener('mousedown', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            isDragging = true;
+            const rect = button.getBoundingClientRect();
+            const sliderRect = slider.getBoundingClientRect();
+            // Store initial mouse position and slider position
+            initialMouseX = e.clientX;
+            initialSliderX = sliderRect.left - rect.left;
+            currentX = initialSliderX; // Set current position
+            startX = e.clientX - rect.left; // For compatibility
+            slider.classList.add('dragging');
+            slider.style.transition = '';
+            buttonText.style.transition = '';
+            if (animationFrame) {
+                cancelAnimationFrame(animationFrame);
+            }
+        });
+        document.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+
+            // Calculate delta from initial mouse position
+            const deltaX = e.clientX - initialMouseX;
+            // Calculate new position based on initial slider position + delta
+            const newX = initialSliderX + deltaX;
+            currentX = Math.max(0, Math.min(newX, maxSlide));
+            updatePosition();
+        });
+        document.addEventListener('mouseup', (e) => {
+            if (!isDragging) return;
+
+            isDragging = false;
+            slider.classList.remove('dragging');
+
+            // If swiped more than 80% of the way, complete the action
+            if (currentX > maxSlide * 0.8) {
+                animateTo(maxSlide, () => {
+                    submitNotification();
+                });
+            } else {
+                snapBack();
+            }
+        });
+    }
+
+    // Submit notification function
+    async function submitNotification() {
+        const emailInput = document.querySelector('.modal-input[type="email"]');
+        const phoneInput = document.querySelector('.modal-input[type="tel"]');
+        const checkbox = document.getElementById('agreeCheckbox');
+
+        if (!emailInput || !checkbox) return;
+
+        const email = emailInput.value.trim();
+        const phone = phoneInput ? phoneInput.value.trim() : '';
+        const agreed = checkbox.classList.contains('checked');
+        if (!email) {
+            alert('Please enter your email address');
+            // Reset slider
+            const slider = document.getElementById('swipeSlider');
+            const buttonText = document.querySelector('.swipe-button-text');
+            if (slider && buttonText) {
+                slider.style.transition = 'transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+                buttonText.style.transition = 'transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+                slider.style.transform = 'translate(0, -50%)';
+                buttonText.style.transform = 'translate(0, -50%)';
+                setTimeout(() => {
+                    slider.style.transition = '';
+                    buttonText.style.transition = '';
+                }, 400);
+            }
+            return;
+        }
+
+        if (!agreed) {
+            alert('Please agree to receive updates');
+            // Reset slider
+            const slider = document.getElementById('swipeSlider');
+            const buttonText = document.querySelector('.swipe-button-text');
+            if (slider && buttonText) {
+                slider.style.transition = 'transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+                buttonText.style.transition = 'transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+                slider.style.transform = 'translate(0, -50%)';
+                buttonText.style.transform = 'translate(0, -50%)';
+                setTimeout(() => {
+                    slider.style.transition = '';
+                    buttonText.style.transition = '';
+                }, 400);
+            }
+            return;
+        }
+
+        // Disable button or show loading state if needed
+        const submitButton = document.querySelector('.swipe-button-text');
+        const originalText = submitButton.innerText;
+        submitButton.innerText = 'Submitting...';
+
+        try {
+            const result = await saveFormSubmission({ email, phone, agreed });
+
+            if (result.success) {
+                // Reset slider
+                const slider = document.getElementById('swipeSlider');
+                // const buttonText = document.querySelector('.swipe-button-text'); // Already selected above
+                if (slider && submitButton) {
+                    slider.style.transform = 'translate(0, -50%)';
+                    submitButton.style.transform = 'translate(0, -50%)';
+                }
+
+                // Close modal
+                closeModal();
+                // Show success message
+                alert('Thank you! We\'ll notify you when it\'s back in stock.');
+            } else {
+                alert('There was an error submitting your request. Please try again.');
+            }
+        } catch (error) {
+            console.error('Submission error:', error);
+            alert('An unexpected error occurred. Please try again.');
+        } finally {
+            submitButton.innerText = originalText;
+        }
+    }
+
+    // Custom checkbox functionality
+    function initCustomCheckbox() {
+        const checkbox = document.getElementById('agreeCheckbox');
+        const label = document.querySelector('.modal-checkbox label');
+
+        if (!checkbox) return;
+
+        // Click on checkbox
+        checkbox.addEventListener('click', () => {
+            checkbox.classList.toggle('checked');
+        });
+        // Click on label
+        if (label) {
+            label.addEventListener('click', () => {
+                checkbox.classList.toggle('checked');
+            });
+        }
+    }
+
+    // Initialize components with improved Replo compatibility
+    let componentsInitialized = false;
+    function initComponents() {
+        if (componentsInitialized) return;
+
+        const slider = document.getElementById('swipeSlider');
+        const checkbox = document.getElementById('agreeCheckbox');
+
+        // Check if elements exist
+        if (!slider && !checkbox) {
+            // Retry once if elements not found (Replo compatibility)
+            if (!componentsInitialized) {
+                requestAnimationFrame(() => {
+                    setTimeout(initComponents, 100);
+                });
+            }
+            return;
+        }
+
+        componentsInitialized = true;
+        initSwipeSlider();
+        initCustomCheckbox();
+    }
+
+    // Initialize with improved Replo compatibility
+    function initComponentsWithRetry() {
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => {
+                requestAnimationFrame(initComponents);
+                initStickyBehavior(); // Initialize the sticky logic
+            });
+        } else {
+            requestAnimationFrame(initComponents);
+            initStickyBehavior();
+            // Initialize the sticky logic
+        }
+    }
+
+    // --- UPDATED FUNCTIONALITY: Simplified Fixed Positioning with Footer Collision ---
+    function initStickyBehavior() {
+        const stickySection = document.getElementById('stickyBottomSection');
+        const mainContainer = document.querySelector('.replos-snippet-container');
+
+        if (!stickySection || !mainContainer) return;
+
+        // Try to find the footer element in the Shopify page
+        const footerElement = document.querySelector('footer') ||
+            document.querySelector('.site-footer') || document.querySelector('#shopify-section-footer') || document.querySelector('.footer');
+
+        const checkDesktop = () => window.innerWidth >= 768;
+
+        window.addEventListener('scroll', () => {
+            // --- Footer Collision Detection ---
+            // Determine if we should check collision. 
+            // The button is now always sticky (fixed at bottom).
+
+            let footer = footerElement;
+            // Fallback check in case footer wasn't found initially (e.g., loaded dynamically)
+            if (!footer) {
+                footer = document.querySelector('footer') || document.querySelector('.site-footer') || document.querySelector('#shopify-section-footer') || document.querySelector('.footer');
+            }
+
+            if (footer) {
+                const footerRect = footer.getBoundingClientRect();
+
+                // We want to hide the button slightly before it touches the footer
+                // to avoid visual clutter.
+                // If the top of the footer is effectively higher than the bottom area of the viewport
+                const limit = window.innerHeight - 10;
+                if (footerRect.top < limit) {
+                    // Hide button
+                    stickySection.classList.add('sticky-collision-hidden');
+                } else {
+                    // Show button
+                    stickySection.classList.remove('sticky-collision-hidden');
+                }
+            }
+        });
+    }
+
+    initComponentsWithRetry();
+</script>
+
+{% schema %}
+{
+"name": "Version-H1 Hero",
+"class": "mobile-padding-standard",
+"settings": []
+}
+{% endschema %}
