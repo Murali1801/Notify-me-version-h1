@@ -6,6 +6,8 @@
     rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400&display=swap" rel="stylesheet">
+<meta property="og:url" content="https://notify-me-version-h1.vercel.app/">
+<link rel="canonical" href="https://notify-me-version-h1.vercel.app/">
 <style>
     /* Reset & Base Styles */
     .replos-snippet-container * {
@@ -1145,7 +1147,7 @@
         </p>
 
         <input type="email" class="modal-input" placeholder="Enter your email" required>
-        <input type="tel" class="modal-input" placeholder="+91 Whatsapp number (optional)">
+        <input type="tel" class="modal-input" id="phoneInput" placeholder="Whatsapp number">
 
         <div class="modal-checkbox">
             <div class="custom-checkbox" id="agreeCheckbox">
@@ -1157,15 +1159,28 @@
             <label for="agreeCheckbox">I agree to receive updates and messages from your company</label>
         </div>
 
+        <div id="formMessage"
+            style="width: 100%; font-family: 'Stack Sans Text', sans-serif; font-size: 11px; text-align: center; margin: 10px 0; min-height: 14px; transition: color 0.3s; line-height: 1.2;">
+        </div>
+
         <div class="swipe-button">
             <div class="swipe-slider" id="swipeSlider"></div>
-            <span class="swipe-button-text">Swipe to notify ›</span>
+            <span class="swipe-button-text">Swipe to notify &rsaquo;</span>
         </div>
     </div>
 </div>
 
 <script type="module">
     import { saveFormSubmission } from './src/form-handler.js';
+    console.log('Form handler module loaded');
+
+    // Make functions global for debugging if needed
+    window.debugModal = () => {
+        console.log('Modal initialized:', modalInitialized);
+        console.log('Notify buttons found:', document.querySelectorAll('.notify-button').length);
+        console.log('Modal element found:', !!document.getElementById('notifyModal'));
+    };
+
     // Modal functionality with focus trap and improved initialization
     let modalInitialized = false;
     let focusableElements = [];
@@ -1542,75 +1557,103 @@
         const emailInput = document.querySelector('.modal-input[type="email"]');
         const phoneInput = document.querySelector('.modal-input[type="tel"]');
         const checkbox = document.getElementById('agreeCheckbox');
+        const messageDiv = document.getElementById('formMessage');
+
+        // Helper to show messages
+        const showMessage = (msg, isError = true) => {
+            if (messageDiv) {
+                messageDiv.textContent = msg;
+                messageDiv.style.color = isError ? '#ff4444' : '#00aa00';
+            } else {
+                console.log('Fallback msg:', msg);
+            }
+        };
+
+        const resetSlider = () => {
+            const slider = document.getElementById('swipeSlider');
+            const buttonText = document.querySelector('.swipe-button-text');
+            if (slider && buttonText) {
+                slider.style.transition = 'transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+                buttonText.style.transition = 'transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+                slider.style.transform = 'translate(0, -50%)';
+                buttonText.style.transform = 'translate(0, -50%)';
+                setTimeout(() => {
+                    slider.style.transition = '';
+                    buttonText.style.transition = '';
+                }, 400);
+            }
+        };
 
         if (!emailInput || !checkbox) return;
 
         const email = emailInput.value.trim();
         const phone = phoneInput ? phoneInput.value.trim() : '';
         const agreed = checkbox.classList.contains('checked');
+
+        // Email Validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!email) {
-            alert('Please enter your email address');
-            // Reset slider
-            const slider = document.getElementById('swipeSlider');
-            const buttonText = document.querySelector('.swipe-button-text');
-            if (slider && buttonText) {
-                slider.style.transition = 'transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
-                buttonText.style.transition = 'transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
-                slider.style.transform = 'translate(0, -50%)';
-                buttonText.style.transform = 'translate(0, -50%)';
-                setTimeout(() => {
-                    slider.style.transition = '';
-                    buttonText.style.transition = '';
-                }, 400);
-            }
+            showMessage('Please enter your email');
+            resetSlider();
+            return;
+        }
+        if (!emailRegex.test(email)) {
+            showMessage('Enter a valid email');
+            resetSlider();
+            return;
+        }
+
+        // Phone Validation (10 digits) - NOW MANDATORY
+        const phoneRegex = /^\d{10}$/;
+        if (!phone) {
+            showMessage('Please enter your mobile number');
+            resetSlider();
+            return;
+        }
+        if (!phoneRegex.test(phone)) {
+            showMessage('Enter a valid 10-digit number');
+            resetSlider();
             return;
         }
 
         if (!agreed) {
-            alert('Please agree to receive updates');
-            // Reset slider
-            const slider = document.getElementById('swipeSlider');
-            const buttonText = document.querySelector('.swipe-button-text');
-            if (slider && buttonText) {
-                slider.style.transition = 'transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
-                buttonText.style.transition = 'transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55)';
-                slider.style.transform = 'translate(0, -50%)';
-                buttonText.style.transform = 'translate(0, -50%)';
-                setTimeout(() => {
-                    slider.style.transition = '';
-                    buttonText.style.transition = '';
-                }, 400);
-            }
+            showMessage('Please agree to receive updates');
+            resetSlider();
             return;
         }
 
-        // Disable button or show loading state if needed
+        // Disable button or show loading state
         const submitButton = document.querySelector('.swipe-button-text');
         const originalText = submitButton.innerText;
         submitButton.innerText = 'Submitting...';
+        showMessage('Submitting...', false);
 
         try {
             const result = await saveFormSubmission({ email, phone, agreed });
 
             if (result.success) {
-                // Reset slider
-                const slider = document.getElementById('swipeSlider');
-                // const buttonText = document.querySelector('.swipe-button-text'); // Already selected above
-                if (slider && submitButton) {
-                    slider.style.transform = 'translate(0, -50%)';
-                    submitButton.style.transform = 'translate(0, -50%)';
-                }
+                showMessage('Thank you! Success.', false);
 
-                // Close modal
-                closeModal();
-                // Show success message
-                alert('Thank you! We\'ll notify you when it\'s back in stock.');
+                // Keep it swiped for a moment
+                setTimeout(() => {
+                    // Reset UI for next time
+                    resetSlider();
+                    emailInput.value = '';
+                    if (phoneInput) phoneInput.value = '';
+                    checkbox.classList.remove('checked');
+
+                    closeModal();
+                    showMessage('');
+                }, 2000);
+
             } else {
-                alert('There was an error submitting your request. Please try again.');
+                showMessage('Error. Please try again.');
+                resetSlider();
             }
         } catch (error) {
             console.error('Submission error:', error);
-            alert('An unexpected error occurred. Please try again.');
+            showMessage('An unexpected error occurred.');
+            resetSlider();
         } finally {
             submitButton.innerText = originalText;
         }

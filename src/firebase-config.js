@@ -12,7 +12,16 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+// Initialize Firebase
+let app, db;
+try {
+    app = initializeApp(firebaseConfig);
+    db = getFirestore(app);
+    console.log("Firebase initialized successfully");
+} catch (error) {
+    console.error("Firebase initialization failed:", error);
+    // Fallback to allow UI to work even if DB is offline
+    db = null;
+}
 
 export { db };

@@ -1,0 +1,13 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /notifications/{notification} {
+      // Allow public write access (creation) so anyone can submit the form
+      // Add validation to ensure only expected data is written if needed
+      allow create: if true;
+      
+      // Deny read/update/delete to public users (admin SDK bypasses this)
+      allow read, update, delete: if false;
+    }
+  }
+}
